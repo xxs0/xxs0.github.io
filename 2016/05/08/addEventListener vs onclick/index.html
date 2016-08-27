@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="HTTP,Note," />
 
 
 
@@ -84,25 +84,22 @@
 
 
 
-<meta name="description" content="课程开始进入尾声，尽量去上课，最后几周的课程也多了。
-周末学校举行大运会，好像和我们这些“老头”没什么关系啦。
-最近在学习python，希望能够把它学会。
-进入转折点，面临一些问题，头大…… what shall i do？so, what can i do ah？">
+<meta name="description" content="Event Listeners (addEventListener or IE’s attachEvent)早期IE版本（小于9），使用attachEvent方法
+ele.attachEvent(&amp;apos;onclick&amp;apos;, function() { /* do something * / });
+大多数浏览器(包含IE9及以上)，可以使用addEventListener    ele">
 <meta property="og:type" content="article">
-<meta property="og:title" content="最近的事">
-<meta property="og:url" content="http://yoursite.com/2012/11/05/48/index.html">
+<meta property="og:title" content="addEventListener vs onclick -- 笔记">
+<meta property="og:url" content="http://yoursite.com/2016/05/08/addEventListener vs onclick/index.html">
 <meta property="og:site_name" content="Iflf's blog">
-<meta property="og:description" content="课程开始进入尾声，尽量去上课，最后几周的课程也多了。
-周末学校举行大运会，好像和我们这些“老头”没什么关系啦。
-最近在学习python，希望能够把它学会。
-进入转折点，面临一些问题，头大…… what shall i do？so, what can i do ah？">
-<meta property="og:updated_time" content="2015-02-12T09:43:37.000Z">
+<meta property="og:description" content="Event Listeners (addEventListener or IE’s attachEvent)早期IE版本（小于9），使用attachEvent方法
+ele.attachEvent(&amp;apos;onclick&amp;apos;, function() { /* do something * / });
+大多数浏览器(包含IE9及以上)，可以使用addEventListener    ele">
+<meta property="og:updated_time" content="2016-08-27T08:41:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="最近的事">
-<meta name="twitter:description" content="课程开始进入尾声，尽量去上课，最后几周的课程也多了。
-周末学校举行大运会，好像和我们这些“老头”没什么关系啦。
-最近在学习python，希望能够把它学会。
-进入转折点，面临一些问题，头大…… what shall i do？so, what can i do ah？">
+<meta name="twitter:title" content="addEventListener vs onclick -- 笔记">
+<meta name="twitter:description" content="Event Listeners (addEventListener or IE’s attachEvent)早期IE版本（小于9），使用attachEvent方法
+ele.attachEvent(&amp;apos;onclick&amp;apos;, function() { /* do something * / });
+大多数浏览器(包含IE9及以上)，可以使用addEventListener    ele">
 
 
 
@@ -123,9 +120,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2012/11/05/48/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/05/08/addEventListener vs onclick/"/>
 
-  <title> 最近的事 | Iflf's blog </title>
+  <title> addEventListener vs onclick -- 笔记 | Iflf's blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -264,7 +261,7 @@
             
             
               
-                最近的事
+                addEventListener vs onclick -- 笔记
               
             
           </h1>
@@ -276,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2012-11-05T22:42:27+08:00" content="2012-11-05">
-              2012-11-05
+            <time itemprop="dateCreated" datetime="2016-05-08T10:08:10+08:00" content="2016-05-08">
+              2016-05-08
             </time>
           </span>
 
@@ -290,8 +287,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/随想/" itemprop="url" rel="index">
-                    <span itemprop="name">随想</span>
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
                   </a>
                 </span>
 
@@ -323,10 +320,35 @@
       
 
       
-        <p>课程开始进入尾声，尽量去上课，最后几周的课程也多了。</p>
-<p>周末学校举行大运会，好像和我们这些“老头”没什么关系啦。</p>
-<p>最近在学习python，希望能够把它学会。</p>
-<p>进入转折点，面临一些问题，头大…… what shall i do？so, what can i do ah？</p>
+        <h4 id="Event-Listeners-addEventListener-or-IE’s-attachEvent"><a href="#Event-Listeners-addEventListener-or-IE’s-attachEvent" class="headerlink" title="Event Listeners (addEventListener or IE’s attachEvent)"></a>Event Listeners (addEventListener or IE’s attachEvent)</h4><p>早期IE版本（小于9），使用<a href="http://msdn.microsoft.com/en-us/library/ie/ms536343%28v=vs.85%29.aspx" target="_blank" rel="external">attachEvent</a>方法</p>
+<pre><code>ele.attachEvent(&apos;onclick&apos;, function() { /* do something * / });
+</code></pre><p>大多数浏览器(包含IE9及以上)，可以使用<a href="https://developer.mozilla.org/en-US/docs/DOM/element.addEventListener" target="_blank" rel="external">addEventListener</a><br>    ele.addEventListener(‘click’, function() { /<em> do something </em> / }, false);</p>
+<p>使用DOM Level2事件，理论上能在任意单个元素上获取无限个事件。唯一的实际限制是客户端内存和其他性能考虑。每个浏览器都不一样<br>上面的例子可以用匿名函数展示。也可以用函数引用或者闭包监听事件。</p>
+<pre><code>var myFunctionReference = function() { /* do something * / };
+ele.attachEvent(&apos;onclick&apos;, myFunctionReference);
+ele.addEventListener(&apos;click&apos;, myFunctionReference, false);
+</code></pre><p>addEventListener另一个重要特性是最后的参数，它控制对冒泡事件的反应。false对95%的情况有效。attachEvent没有相同的参数，或者当使用行内事件。</p>
+<h4 id="inline-event"><a href="#inline-event" class="headerlink" title="inline event"></a>inline event</h4><p>所有支持js的浏览器中，你都能在行内放置事件监听</p>
+<pre><code>&lt;a id=&quot;testing&quot; href=&quot;#&quot; onclick=&quot;alert(&apos;do something inline&apos;);&quot;&gt;Click me&lt;/a&gt;
+</code></pre><p>大多数有经验的开发者鄙视这种方法，但是它能把事做成，而且简单直接。这里不用闭包或匿名函数，你控制的范围被限制。</p>
+<p>另一个方法等同行内js，除了你有更多控制范围，也能使用匿名函数，函数引用和闭包。</p>
+<pre><code>ele.onclick = function() { /* do something * / };
+</code></pre><p>行内事件的重要缺点是不如事件监听，你只能操作分配的一个行内事件。行内时间被存储喂一个键值对，意味着它能被重写。</p>
+<pre><code>var ele = document.getElementById(&apos;testing&apos;);
+ele.onclick = function () { alert(&apos;do something #1&apos;); };
+ele.onclick = function () { alert(&apos;do something #2&apos;); };
+</code></pre><p>当你点击元素，只能看到“do something ＃2”，重写了第一个onclick属性，也重写了原来的行内HTML属性。检查<a href="http://jsfiddle.net/jpgah/" target="_blank" rel="external">这里</a></p>
+<h4 id="那个最佳"><a href="#那个最佳" class="headerlink" title="那个最佳"></a>那个最佳</h4><p>这个问题涉及浏览器的兼容性和重要性，你现在或以后需要追加不止一个事件给一个元素？如果是，attachEvent和addEventListener是必要的，如果不是，行内事件也是一个妙招。</p>
+<p>jQuery和其他js框架包含了不用浏览器执行DOM Level2 事件的方案，所有你能写出跨浏览器的代码不用担心IE的历史</p>
+<pre><code>$(ele).on(&apos;click&apos;, function() {/* do something * /});
+</code></pre><p>不要为了一件事情动用一个框架！</p>
+<pre><code>function addEvent(ele, event, funct) {
+  if (ele.attachEvent)
+  return ele.attachEvent(&apos;on&apos;+event, funct);
+  else
+  return ele.addEventListener(event, funct, false);  
+}
+</code></pre><p>学习来源：<a href="http://stackoverflow.com/questions/6348494/addeventlistener-vs-onclick" target="_blank" rel="external">http://stackoverflow.com/questions/6348494/addeventlistener-vs-onclick</a></p>
 
       
     </div>
@@ -347,21 +369,29 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag">#HTTP</a>
+          
+            <a href="/tags/Note/" rel="tag">#Note</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2012/10/21/38/" rel="next" title="签工作">
-                <i class="fa fa-chevron-left"></i> 签工作
+              <a href="/2015/05/10/bu-zhi-dao-yao-shen-me/" rel="next" title="不知道要什么">
+                <i class="fa fa-chevron-left"></i> 不知道要什么
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2012/11/08/chi-pu-tao-de-shun-xu/" rel="prev" title="吃葡萄的顺序">
-                吃葡萄的顺序 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/16/css center/" rel="prev" title="CSS居中-完整指南">
+                CSS居中-完整指南 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,7 +517,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Event-Listeners-addEventListener-or-IE’s-attachEvent"><span class="nav-number">1.</span> <span class="nav-text">Event Listeners (addEventListener or IE’s attachEvent)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inline-event"><span class="nav-number">2.</span> <span class="nav-text">inline event</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#那个最佳"><span class="nav-number">3.</span> <span class="nav-text">那个最佳</span></a></li></ol></div>
             
           </div>
         </section>
