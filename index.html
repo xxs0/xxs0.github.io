@@ -264,6 +264,268 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/10/where variable store in/" itemprop="url">
+                  var 和 let 的变量存储位置探索
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-10T10:00:12+08:00" content="2017-06-10">
+              2017-06-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> a = <span class="number">5</span>,</div><div class="line">    show = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">show()    </div><div class="line"><span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<p>起因于上面这段代码。因为函数的this指向的是window，那么全局变量应该可以用这种方式调用。我运行函数show,应该会打印出5，但是结果显示是undefined。于是这让我困惑了，并激起了我对声明变量的存储位置的探索兴趣。</p>
+<p>进过一段测试，再看看代码，发现了原因，因为我使用了let申明变量a。</p>
+<p>我们知道，var的作用域是全局和函数块。</p>
+<ul>
+<li><p>所以全局下的var会讲变量挂在一个全局对象下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">10</span>;</div><div class="line"></div><div class="line"><span class="comment">// 浏览器环境下的全局对象为window</span></div><div class="line"><span class="built_in">window</span>.num</div><div class="line"><span class="comment">// 10</span></div><div class="line"></div><div class="line"><span class="comment">// node环境下的全局对象为global</span></div><div class="line">global.num</div><div class="line"><span class="comment">// 10</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>而函数作用域下的变量，一般情况下只能在函数体内部使用，外部无法访问。</p>
+</li>
+</ul>
+<p>let声明的是块级作用域的本地变量，声明的变量只在其声明的块或子块中可用。下面是let的一些注意事项：</p>
+<ul>
+<li>在同一个函数或同一个作用域中用let重复定义一个变量将引起 TypeError.</li>
+<li>在 ECMAScript 2015 中，let 绑定不受变量提升的约束，这意味着 let  声明不会被提升到当前执行上下文的顶部。在块中的变量初始化之前，引用它将会导致 ReferenceError（而使用 var 声明变量则恰恰相反，该变量的值是 undefined ）。这个变量处于从块开始到 let 初始化处理的”暂存死区“之中。</li>
+</ul>
+<p>const、let等声明都是存储在全局环境的declarative environment record，而不是全局对象中。</p>
+<p>补充：</p>
+<ul>
+<li><p>1.<a href="https://stackoverflow.com/questions/41848022/where-are-global-let-variables-stored" target="_blank" rel="external">https://stackoverflow.com/questions/41848022/where-are-global-let-variables-stored</a></p>
+</li>
+<li><p>2.<a href="https://stackoverflow.com/questions/28776079/do-let-statements-create-properties-on-the-global-object" target="_blank" rel="external">https://stackoverflow.com/questions/28776079/do-let-statements-create-properties-on-the-global-object</a></p>
+</li>
+<li><p>3.<a href="https://stackoverflow.com/questions/20139050/what-really-is-a-declarative-environment-record-and-how-does-it-differ-from-an-a" target="_blank" rel="external">https://stackoverflow.com/questions/20139050/what-really-is-a-declarative-environment-record-and-how-does-it-differ-from-an-a</a></p>
+</li>
+<li><p>4.<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Statements/let</a></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/20/call、apply、bind/" itemprop="url">
+                  call、apply、bind
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-20T20:20:50+08:00" content="2017-04-20">
+              2017-04-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">Web前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>为什么会有这种需求？</p>
+<p>首先，我们知道，每个object都可以有自身的属性和方法。但是有趣的是JavaScript可以做更多的事情。</p>
+<p>举例子：假如一个object有自身的属性，另外一个独立的函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">2</span>;</div><div class="line"><span class="keyword">let</span> obj1 = &#123;num: <span class="number">5</span>&#125;,</div><div class="line">    addToThis = <span class="function"><span class="keyword">function</span>(<span class="params">a, b, c</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.num + a + b + c)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">addToThis(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line"><span class="comment">// 8   this指向全局window</span></div></pre></td></tr></table></figure>
+<p>如果想要obj1使用它本身没有的方法，怎么办呢？这是就用到了Function.prototype.call</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">addToThis.call(obj1,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</div><div class="line"><span class="comment">// 11</span></div><div class="line"><span class="comment">// functionName.call(obj1, function's arguments)</span></div></pre></td></tr></table></figure>
+<p>apply与call主要区别在于arguments的表现方式，apply接受argument组成的数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">addToThis.apply(obj1,[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"><span class="comment">// 11</span></div></pre></td></tr></table></figure>
+<p>bind则返回一个新函数</p>
+<p><img src="https://i.loli.net/2017/08/24/599e8e33604d5.png" alt="bind"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/10/http note/" itemprop="url">
                   理想的HTTP性能 -- 笔记
                 </a>
@@ -1296,232 +1558,6 @@ ele.onclick = function () { alert(&apos;do something #2&apos;); };
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/02/27/160/" itemprop="url">
-                  知音难觅
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-27T22:36:43+08:00" content="2014-02-27">
-              2014-02-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/碎碎/" itemprop="url" rel="index">
-                    <span itemprop="name">碎碎</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <embed src="http://www.xiami.com/widget/0_1770915127/singlePlayer.swf" type="application/x-shockwave-flash" width="257" height="33" wmode="transparent">
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/02/22/133/" itemprop="url">
-                  更新iOS7后无法使用蜂窝数据的解决办法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-02-22T12:26:37+08:00" content="2014-02-22">
-              2014-02-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/碎碎/" itemprop="url" rel="index">
-                    <span itemprop="name">碎碎</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今天，苹果推送了iOS7.0.6的更新，是一个安全方面的更新，修复SSL连接验证的一个bug。建议更新。</p>
-<p>因为更新iOS7.0.5后开机无法使用蜂窝数据，我就想，这次会不会也一样?果真，在更新完毕后无法使用蜂窝数据上网。方法很简单，重启一下就OK了。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1567,7 +1603,7 @@ ele.onclick = function () { alert(&apos;do something #2&apos;); };
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1584,7 +1620,7 @@ ele.onclick = function () { alert(&apos;do something #2&apos;); };
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
